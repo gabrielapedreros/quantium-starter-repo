@@ -23,7 +23,11 @@ Dash: web app framework for data visualization - displays the figure inside a we
 
 """
 Task 4 UI Components
+Input and Output
+Id - names of elements
 
+Task 5 Testing 
+Use those Id elements
 """
 import pandas as pd 
 import plotly.express as px #plotly
@@ -34,6 +38,7 @@ df = pd.read_csv('output_file.csv') #pandas read dataframe?
 df['Date'] = pd.to_datetime(df['Date']) #make in date format
 df = df.sort_values("Date") #sorted by date
 
+
 #line chart and labels
 #fig = px.line(df, x='Date', y='Sales', title='How The Pink Morsel Price Change Affected Sales', labels={"Date": "Date (Month, Year)", "Sales": "Sales($)"})
 
@@ -41,16 +46,16 @@ app = dash.Dash(__name__)
 
 #header title
 app.layout = html.Div([
-    html.H1("Sales Over Time of Pink Morsels", style={'text-align': 'center'}), 
+    html.H1("Sales Over Time of Pink Morsels", id="page-title", style={'text-align': 'center'}),
 
     dcc.RadioItems(
         id="region-filter",
         options=[
             {"label": "All", "value": "all"},
-            {"label": "North", "value": "north"},
-            {"label": "East", "value": "east"},
-            {"label": "South", "value": "south"},
-            {"label": "West", "value": "west"},
+            {"label": "north", "value": "north"},
+            {"label": "east", "value": "east"},
+            {"label": "south", "value": "south"},
+            {"label": "west", "value": "west"},
         ],
         value="all",
         inline=True
